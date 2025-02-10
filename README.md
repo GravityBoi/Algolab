@@ -1,2 +1,37 @@
-# Algolab
-ETH Algolab Fall 2024
+# How to survive ETH Algolab as an idiot
+In this guide I will write down everything I learned about passing the course Algolab at ETH. I took the course in the Fall semester 2024. 
+If you have a competitive Programming background or are really really smart, then this course should be no problem for you. In case you are not (like me) then this guide is for you.
+
+**Structure**:
+1. About the course
+2. how to survive the semester
+3. how to survive the exam
+4. Solutions
+
+## About the course and why one would take it
+In the CS ETH Master you have to pass 2 labs out of the 4 options. Algolab is known to be very difficult, frustrating and having a hard exam (instead of being project based like other labs). So why the hell would you take it? Well in case you aren't very interested in Information Security but rather in algorithms like me then maybe this course can make sense for you too. I didn't have Competitive Programming background, which makes this course very difficult and a lot of work, but my idea behind taking this course even though everyone says it's horribble (it truly is) was: If I am able to pass this course (I don't care about my grade in algolab) and put myself trough all the pain and suffering it will improve my logical and algorithmic thinking and programming skills. And it did! Was it worth it? I don't really know. Would I take it again if I could go back in time? Probably yes.
+
+## How to survive the semester
+I would recommend solving at least 85% of the problems. You really need the very frustrating practice and pain to learn how the problems are structured and work and to learn BGl and CGAL. They are super annyoing and take time to get used to, but you 100% need them to solve the exam questions. I would recommend to always work with the official DOCs page you will also have access to during the exam. That way you can get used to the material and searching up stuff just like in the exam. On there are also the example-code snippets, those are absolutely essential! Whenever you work with anything other than DP you will need them. 
+Don't spend too much time solving one problem, but also don't look at the solutions after 30 mins of trying. I would give it between 1-3 hours and then look up the solution if you are stuck; but make sure to then fully understand what you did wrong and how to properly solve it. Under no curcimstance just copy and paste the solution code!!! Try to understand the solution and then code it up yourself, otherwise you will only learn a fraction as much.
+Don't get too demotivated by the problems. They are really difficult, I don't care what anybody else says.
+Week 10-14 is the exam preperation time. When week 10 hit the difficult felt like it increased by a lot. Don't let this intimidate you, just keep going and when you are done with almost everything you will have a much better feel for all the problems trust me.
+
+## How to survive the exam
+There are 2 exam days with 3 Problems each. Each problem can give up to a 100 points. So 600 in total. Each exam day one of the three problems is a known one from the semester but with a different backstory. Those are the lifesavers! Don't miss out on those! I have friends who couldn't fully solve them or took 2 or more hours to do so. This is bad bad bad. It is sooooo much harder to solve new problems than learn the known ones from the semester. I would recommend everyone to learn all the problems from the semester. Don't just have a few or even more problems that you never even read or know the solution, why would you?! I made a list the week before the exam where I wrote down how to solve every single problem and went trough it all the time and I got both known problems 100%. For me there are three levels to knowing the problems: 1. Knowing the conceptual solution 2. knowing the code 3. Knowing how to code it yourself. For me there is a difference between knowing the conceptual solution and actually going trough the solution code itself and seeing the constructs and the exact code on how to solve it. I personally had a few problems that I never coded up myself, but I learned the conceptual and code solution for them. And in fact the known problem on the first day of the exam was one of those problems and I was bale to code the right solution in 40 mins because I went trough the actual solution code of someone else and tried to understand it. Going trough someone elses code is super annyoing but in my opinion if you can go trough it and actually understand properly in detial how it works you will be able to also code it yourself.
+
+Here are our exam problem-topics.
+1. Exam Day
+   - DP Problem (very hard imo, only solved 50%, but those were very doable; apparently you needed to use some sort of dp-sweeping algorithm)
+   - Graph problem (Djikstra) (You had a grid with weights and needed to compute the path from a starting to finish point with the smallest amount of damage; just buold the graph and since the weights should be on the nodes and not the edges you just used the duplication trick, so every node in the graph gets split into an input and output node and you put the weight between the edge ebtween them. Test cases 3 and 4 were about being able to skip an amount of weights c, but only up to like 10 or 15, so you could duplicate the graph that many times and connect the in node to the same outnode of the duplicated graph.)
+   - Hermione granger clone (Delaunay + Linear program)
+  
+2. Exam Day
+   - Some graph + DP Problem I think (not a single clue on how to solve it, only got the first test case)
+   - Mincut Problem
+   - The Hands Tourney Clone (Delaunay + Union Find)
+  
+What I learned from them:
+Both of our clones were from week 10, as far as I know the two clones from 2023 were from week 10 and 11. So I have this theory that the clones might be usually from the exam preperation phase (Week 10-14) rather than the weeks before. Maybe if we gather more data trough the next years we can be more sure of it. Also as much as I kind of hate algolab I have to admit: Our exam wasn't that mean, because you could literally pick up half of the points for a problem without a super fancy crazy solution. So if you get both known problems (200 points) and then just greedily get the test cases you should be able to pass! This another recommendation of mine for idiots like me: Greedily get the test cases! Don't be too focused on getting the right overall solution. Most times the test cases are structured in a way that you build up the solution along the way, so if you just build it step by step you can get points all the time. Some friends didn't have the time in the end to solve the easy test cases anymore because they focused on solvin the whole problem at once (kinda). If you are really good at this stuff and want a really good grade, then you can try to solve the problems fully directly; but if algolab is as annyoing and difficult for you as it was for me then I would recommend my approach. Also as a sidenote: Sometimes the solution for the first or second test case are entirely different to solving the whole problem and you could spend a lot of time implementing a solution there instead of solving the whole problem; for this you just got to get a feeling for the problems and test cases and get lucky. I'd rather have 50 points in the bag and less time for the rest of the problem left; also often times you learn more abou how to solve the problem if you do it step by step instead of in one go.
+
+## Solutions
