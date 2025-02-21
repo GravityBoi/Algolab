@@ -72,6 +72,7 @@ Pyramid of bombs each with a timer when they will explode. It takes bond one min
 
 Idea: Greedily sort the bombs according to their explosion time and try do deactivate the one with the smallest time first, since obviously if we can’t take deactivate the one with the shortest timer we are cooked anyways. 
 Go through the sorted list and if not yet deactivated try to deactivate that bomb by calling a recursive function to deactivate all that stand on top of the bomb we are trying to defuse. Keep a bool vector of the ones already defused and a timer. Add the time it takes to defuse the required bomb to the timer and if it is bigger than explosion time we’re done.
+
 “
 int take_subtree(std::vector<bool>& taken, const int root) {
 	if (root >= (int)taken.size() || taken[root])
@@ -104,6 +105,7 @@ Precompute the closest obstacle for each bacteria through Delaunay Triangulation
 “  K::FT d = CGAL::sqrt(square_dist);
   return (int) std::ceil(CGAL::sqrt((d - 1) / 2));”
 Caution: You have to subtract 1 and divide by 2 for the distance between two bacteria since they both grow, like in the code snippet above, but then you have to be cautious for the collision with the wall:
+
 “
 	long x = vh->point().x();
 	long y = vh->point().y();
@@ -131,6 +133,7 @@ Min cost max flow where each day is a vertex. Then, we can keep meals between da
 
 **Algocoon - Maxflow (Mincut)**
 You have n nodes and m connections/edges between them. You want to find the cheapest option to split them up. We are looking for a price of the cheapest cut - note that the problem does not ask for the cut itself. If we knew the division of the two sets (one is figures for me, second for my friend) of the figures then we could pick any pair of figures - each from one set - and the maximum flow between them would be the minimal achievable cutting cost. Note that the maximum flow is not symmetric - the maximum flow between figures A and B does not necessarily equals the one between B and A. Therefore we might assume that both should be checked. Since we know both sets are non-empty we can fix one figure and check the max-flows to all other figures. Besides that we also need to check the max-flow in the other directions. We are guaranteed that at least one figure will be in the other set. This requires 2*(n-1) calls to the max-flow function.
+
 “
 long flow = std::numeric_limits<long>::max();
   for(int i = 1; i < figure_count; i++) {
