@@ -1,4 +1,4 @@
-# How to survive ETH Algolab as an idiot
+# How to survive ETH Algolab as an idiot (Fall 2024)
 In this guide I will write down everything I learned about passing the course Algolab at ETH. I took the course in the Fall semester 2024. 
 If you have a competitive Programming background or are really really smart, then this course should be no problem for you. In case you are not (like me) then this guide is for you.
 
