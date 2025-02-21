@@ -131,13 +131,13 @@ Min cost max flow where each day is a vertex. Then, we can keep meals between da
 
 **Algocoon - Maxflow (Mincut)**
 You have n nodes and m connections/edges between them. You want to find the cheapest option to split them up. We are looking for a price of the cheapest cut - note that the problem does not ask for the cut itself. If we knew the division of the two sets (one is figures for me, second for my friend) of the figures then we could pick any pair of figures - each from one set - and the maximum flow between them would be the minimal achievable cutting cost. Note that the maximum flow is not symmetric - the maximum flow between figures A and B does not necessarily equals the one between B and A. Therefore we might assume that both should be checked. Since we know both sets are non-empty we can fix one figure and check the max-flows to all other figures. Besides that we also need to check the max-flow in the other directions. We are guaranteed that at least one figure will be in the other set. This requires 2*(n-1) calls to the max-flow function.
-“ 
+“
 long flow = std::numeric_limits<long>::max();
   for(int i = 1; i < figure_count; i++) {
 	flow = std::min(flow, boost::push_relabel_max_flow(G, 0, i));
 	flow = std::min(flow, boost::push_relabel_max_flow(G, i, 0));
   }
-”
+“
 
 **Hermione Granger - Delaunay + LP**
 Just do Delaunay and set up LP. Be aware: Two members can be closest to the same student then we need to greedily decide who to pick there.
@@ -153,14 +153,18 @@ Basically how this works is we don’t need the actual maxflow flow number, we o
 **Rubeus Hagrid - Graphs (Greedily sorted DFS)**
 Binary Tree with every edge having a length. Some nodes have an amount of gold, but the time x it takes to get there gets subtracted from the amount of gold there. The question is what is the maximum amount of gold you can retrieve from the starting node at the top.
 First we recursively precompute for every node the amount of children that node has and the total traveltime for the whole subtree. Then we recursively calculate which subtree to take first, so we first sort all subtrees/children according to the time it takes to traverse that subtree times the amount of chambers with gold we have there: “(w1 + weights[tgt1]) * counts[tgt2] < (w2 + weights[tgt2]) * counts[tgt1]” .
-Then:”  long sum = galleons[src] - time;
+Then:
+
+“
+long sum = galleons[src] - time;
   for (const auto [tgt, weight]: children) {
 	sum += solve(g, tgt, time + weight);
 	time += 2 * (weight + weights[tgt]);
   }
 
   return sum;
-”
+“
+
 Then we explore the subtrees in the order of how we sorted them. We recursively calculate the sum by calling that subtree with the current time + the time it takes to travel to that subtree. Afterwards we adjust the current time by taking the time to get there + the time it takes for the whole subtree times 2 (for going down and up again) and add that to our time.
 
 **San Francisco - DP**
@@ -196,6 +200,7 @@ The main idea in this problem is to use binary search on the value K. In each st
 With increasing K the resulting graph is getting smaller and hence C is decreasing (not necessarily in every step)
 Given K and calculating C the result for this setting is min(K,C). We are therefore balancing these 2 values.
 The initial upper bound (the "high" index) can be set to N/2. C cannot be bigger than N-K. This might not seem important as this would save 1 step in the binary search, but but in each verification step we are given graphs with different size, therefore we want to avoid checking for big values. Theoretically this can speed up the whole computation 2x.
+
 “
   int best_result = 0;
   int low = 2, high = nr_planets/2;
@@ -218,6 +223,7 @@ The initial upper bound (the "high" index) can be set to N/2. C cannot be bigger
 	}
   }
 “
+
 The only thing to do is for given K and calculated C specify the update rules for "high" and "low". We have only 3 options:
 K == C - We found the result/optimal value. Decreasing K would decrease the result (since it is min(C,K)) and increasing K is also of no avail as it could only decrease C.
 K < C - We can increase K to potentially better result. We can also cap upper bound (for K) to C since making it bigger would give no benefit.
@@ -228,6 +234,7 @@ BFS (or DFS) to find connected component on a graph
 Having the edges of the graph we can find the biggest connected component by running DFS/BFS and marking visited vertices. Since we are operating with CGAL Triangulation we do not access vertices by integer index but access them via an iterator and vertex_handle. Instead of making bool array we can attach the bool to the vertices using CGAL::Triangulation_vertex_base_with_info_2<bool, K>.
 Avoiding SQRT by comparing squares
 When checking if potential edges from the Delaunay triangulation do exist (have length smaller than R) we do not need to compute sqrt((x1-x2)^2 + (y1-y2)^2) ?? R. Instead we can use the squares (x1-x2)^2 + (y1-y2)^2 ?? R^2 to avoid the square root which is slow and can lead to rounding errors. Since all input coordinates are integers and are smaller than 2^24 we know the squares are not bigger than 2^48 which still fits into the range of double or 64bit integer.
+
 “
 const int max_connected_component_size(const v2dp& planets, const int used_planets_beginning, const double squared_max_range) {
   Triangulation t(std::begin(planets)+used_planets_beginning, std::end(planets));
@@ -318,7 +325,8 @@ Cost to fix this node and optimally handle all children
 Cost if this node gets saved by a parent and we handle all children
 Cost to save all children without saving ourselves (we need this for 
 Code:
-“  long fixmecost = cost[src];
+“  
+long fixmecost = cost[src];
  
   for(int tar : stages[src]){
 	auto [fix_child, child_saved, save_child] = solve(tar);
@@ -329,7 +337,8 @@ Code:
 	bestchild = std::min(bestchild, fix_child - childsafe);
   }
  
-  return {fixmecost, parentssave + bestchild, parentssave};”
+  return {fixmecost, parentssave + bestchild, parentssave};
+“
 
 => bestchild is the extra cost we have to pay for one child to be repaired themselves so we get saved. So then parentssave is the cost of completely ignoring ourselves and handle all children optimall and parentssave + bestchild is the cost of getting saved by one child and handling all children optimally.
 => So a more appropriate naming for the three values would be
